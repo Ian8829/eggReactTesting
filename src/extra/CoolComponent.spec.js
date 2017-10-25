@@ -11,10 +11,16 @@ const CoolComponent = ({greeting}) => (
 );
 
 describe('CoolComponent', () => {
-  it('should...', () => {
+  it('should render the greeting', () => {
     const renderer = createRenderer();
     renderer.render(<CoolComponent greeting="hello world" />);
-    const output = renderer.getRenderOutput();
-    console.log(output);
+    const actual = renderer.getRenderOutput();
+    const expected = (
+      <div>
+        <h1>Greeting</h1>
+        <div>hello world</div>
+      </div>
+    );
+    expect(actual).toEqual(expected);
   });
 });
