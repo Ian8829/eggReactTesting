@@ -2,6 +2,8 @@ import React from 'react';
 import * as ShallowTestUtils from 'react-shallow-testutils';
 import { createRenderer } from 'react-test-renderer/shallow';
 import expect from 'expect';
+import expectJSX from 'expect-jsx';
+expect.extend(expectJSX);
 
 const CoolComponent = ({greeting}) => (
   <div>
@@ -15,12 +17,7 @@ describe('CoolComponent', () => {
     const renderer = createRenderer();
     renderer.render(<CoolComponent greeting="hello world" />);
     const actual = renderer.getRenderOutput();
-    const expected = (
-      <div>
-        <h1>Greeting</h1>
-        <div>hello world</div>
-      </div>
-    );
-    expect(actual).toEqual(expected);
+    const expected = <div>hello world</div>;
+    expect(actual).toIncludeJSX(expected);
   });
 });
